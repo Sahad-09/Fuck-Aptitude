@@ -4,6 +4,8 @@
 
 > **Disclaimer** – This tool is for “research purposes only”. Seriously, don’t use it in a real exam unless you enjoy expulsion letters.
 
+Repo: [https://github.com/Sahad-09/Fuck-Aptitude.git](https://github.com/Sahad-09/Fuck-Aptitude.git)
+
 ---
 
 ## 🚀 Quick‑Start
@@ -14,20 +16,32 @@
 * **Git**
 * A **Gemini API key** → grab one from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-### Installation
+### Installation Steps
 
 ```bash
-# 1. clone
-git clone <repo‑url>
-cd fuck‑aptitude
+# 1. clone the repo
+git clone https://github.com/Sahad-09/Fuck-Aptitude.git
+cd Fuck-Aptitude
+```
 
-# 2. install deps
+```bash
+# 2. set up env vars
+touch .env
+```
+
+Edit it (e.g., with `nano .env`) and add:
+
+```env
+GEMINI_API_KEY=your_google_gemini_api_key_here
+```
+
+Save and exit. This connects Cluely to Google Gemini for AI responses.
+
+```bash
+# 3. install dependencies
 npm install
-
-# 3. env vars
-cp .env.example .env   # or create manually
-# then edit .env and add:
-# GEMINI_API_KEY=your_key_here
+# or
+yarn install
 ```
 
 ### Run the App
@@ -37,9 +51,18 @@ cp .env.example .env   # or create manually
 ```bash
 # start Vite + React on port 5180
 npm run dev -- --port 5180
+# or
+yarn run dev --port 5180
+```
 
-# in a second terminal: launch Electron shell
+Open a second terminal and run:
+
+```bash
+# Linux/macOS
 NODE_ENV=development npm run electron:dev
+
+# Windows PowerShell
+$env:NODE_ENV = 'development'; npm run electron:dev
 ```
 
 #### Prod build
