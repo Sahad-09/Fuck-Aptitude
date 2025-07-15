@@ -1,113 +1,111 @@
-# Fuck Aptitude
+# 😈 Fuck Aptitude: Your Sneaky Sidekick for Smashing Placement Tests
 
-*A desktop side‑kick for blitz‑cracking placement aptitude tests (ahem… totally not cheating).*
+*Because who needs to *actually* study when you’ve got this bad boy?*
 
-> **Disclaimer** – This tool is for “research purposes only”. Seriously, don’t use it in a real exam unless you enjoy expulsion letters.
+> **Disclaimer**: This tool is for "educational research" only. Using it in a real exam is like begging for a one-way ticket to Expulsionville. Don’t say I didn’t warn you, genius.
 
 Repo: [https://github.com/Sahad-09/Fuck-Aptitude.git](https://github.com/Sahad-09/Fuck-Aptitude.git)
 
 ---
 
-## 🚀 Quick‑Start
+## 🚀 Quick-Start: Be a Rebel in 5 Minutes
 
-### Prerequisites
+Ready to stick it to those soul-crushing aptitude tests? Here’s how to get this beast running.
 
-* **Node.js** ≥ 18
-* **Git**
-* A **Gemini API key** → grab one from [Google AI Studio](https://makersuite.google.com/app/apikey)
+### Prerequisites (aka Stuff You Should Already Have)
 
-### Installation Steps
+- **Node.js** ≥ 18 (don’t be that guy running Node 12, okay?)
+- **Git** (because duh, you’re cloning a repo)
+- A **Gemini API key** – snag one from [Google AI Studio](https://makersuite.google.com/app/apikey) unless you enjoy error messages.
 
+### Installation: Easier Than Cheating on a Math Quiz
+
+1. **Clone the repo like a pro**:
+   ```bash
+   git clone https://github.com/Sahad-09/Fuck-Aptitude.git
+   cd Fuck-Aptitude
+   ```
+
+2. **Set up your super-secret env vars**:
+   ```bash
+   touch .env
+   ```
+   Crack open `.env` with your favorite editor (like `nano .env`, you caveman) and toss in:
+   ```env
+   GEMINI_API_KEY=your_google_gemini_api_key_here
+   ```
+   Save it, exit, and bask in the glow of connecting to Google Gemini’s AI brain.
+
+3. **Install dependencies** (aka the stuff that makes this work):
+   ```bash
+   npm install
+   # or, if you’re a Yarn hipster
+   yarn install
+   ```
+
+### Run It Like You Stole It
+
+#### Dev Mode (for when you’re feeling extra lazy)
+Fire up the dev server and watch the magic happen:
 ```bash
-# 1. clone the repo
-git clone https://github.com/Sahad-09/Fuck-Aptitude.git
-cd Fuck-Aptitude
-```
-
-```bash
-# 2. set up env vars
-touch .env
-```
-
-Edit it (e.g., with `nano .env`) and add:
-
-```env
-GEMINI_API_KEY=your_google_gemini_api_key_here
-```
-
-Save and exit. This connects Cluely to Google Gemini for AI responses.
-
-```bash
-# 3. install dependencies
-npm install
-# or
-yarn install
-```
-
-### Run the App
-
-#### Dev mode  (ideal for first time)
-
-```bash
-# start Vite + React on port 5180
+# Vite + React, now on port 5180 because 3000 is so last year
 npm run dev -- --port 5180
 # or
 yarn run dev --port 5180
 ```
 
-Open a second terminal and run:
-
+Pop open a second terminal (multitasking, much?) and run:
 ```bash
-# Linux/macOS
+# Linux/macOS cool kids
 NODE_ENV=development npm run electron:dev
 
-# Windows PowerShell
+# Windows PowerShell warriors
 $env:NODE_ENV = 'development'; npm run electron:dev
 ```
 
-#### Prod build
-
+#### Production Build (for when you’re ready to show off)
 ```bash
-npm run build   # compiled app lands in /release
+npm run build   # Spits out a shiny app in /release
 ```
 
 ---
 
-## ⚡️ Keyboard Shortcuts
+## ⚡️ Keyboard Shortcuts: Because Clicking is for Suckers
 
 | Combo                 | Action                                      |
-| --------------------- | ------------------------------------------- |
-| **⌘ / Ctrl + B**      | Toggle window visibility                    |
-| **⌘ / Ctrl + H**      | Screenshot the current screen (MCQ capture) |
-| **⌘ / Enter**         | Ask Gemini for the answer                   |
-| **⌘ / Ctrl + Arrows** | Nudge window around                         |
+|-----------------------|---------------------------------------------|
+| **⌘ / Ctrl + B**      | Hide/show the window (poof, you’re invisible!) |
+| **⌘ / Ctrl + H**      | Screenshot the screen (grab that MCQ like a ninja) |
+| **⌘ / Enter**         | Beg Gemini for the answer (it’s smarter than you) |
+| **⌘ / Ctrl + Arrows** | Nudge the window around (because precision is sexy) |
 
 ---
 
-## Troubleshooting
+## Troubleshooting: When Your Genius Plan Goes Sideways
 
-1. Port 5180 busy? Kill the hog:
-
+1. **Port 5180 is throwing a tantrum?** Murder the process hogging it:
    ```bash
-   lsof -i :5180  # find PID
-   kill -9 <PID>
+   lsof -i :5180  # Find the culprit’s PID
+   kill -9 <PID>  # Sayonara, loser
    ```
-2. Weird npm errors?
 
+2. **NPM acting like a drunk uncle?** Nuke the evidence and start over:
    ```bash
    rm -rf node_modules package-lock.json && npm install
    ```
-3. Still borked? Delete the **/release** folder and re‑build.
+
+3. **Still broken?** Yeet the `/release` folder into oblivion and rebuild. You’re welcome.
 
 ---
 
-## Contribution
+## Contribution: Join the Dark Side
 
-This repo is mostly on auto‑pilot—I’m swamped. PRs are welcome; issues will be ignored with love.
-Need a custom corporate solution? Ping me.
+This repo runs itself like a well-oiled cheating machine. I’m too busy sipping coffee to fix your bugs, but PRs are welcome (make ‘em good). Issues? They’ll be ignored with a warm, sarcastic hug.
+
+Got a corporate gig that needs this kind of spice? Slide into my DMs.
 
 ---
 
-### Legal
+## Legal: Don’t Be *That* Guy
 
-Using this app in an official assessment is almost certainly a violation of the rules. You assume all responsibility for whatever trouble you get into. 😉
+Using this app in a real exam is like bringing a flamethrower to a pillow fight—technically possible, but you’re gonna get burned. All responsibility for your inevitable academic doom is on *you*. 😘
