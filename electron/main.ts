@@ -1,9 +1,17 @@
 import { app, BrowserWindow } from "electron"
+import fs from "fs"
+import path from "path"
+import log from "electron-log"
 import { initializeIpcHandlers } from "./ipcHandlers"
 import { ProcessingHelper } from "./ProcessingHelper"
 import { ScreenshotHelper } from "./ScreenshotHelper"
 import { ShortcutsHelper } from "./shortcuts"
 import { WindowHelper } from "./WindowHelper"
+
+// Configure electron-log to save to desktop for easy debugging
+log.transports.file.resolvePathFn = () => path.join(app.getPath("desktop"), "logs", "main.log")
+
+log.info("App starting...")
 
 export class AppState {
   private static instance: AppState | null = null
@@ -45,17 +53,23 @@ export class AppState {
   } as const
 
   constructor() {
+    log.info("AppState constructor called")
+
     // Initialize WindowHelper with this
     this.windowHelper = new WindowHelper(this)
+    log.info("WindowHelper initialized")
 
     // Initialize ScreenshotHelper
     this.screenshotHelper = new ScreenshotHelper(this.view)
+    log.info("ScreenshotHelper initialized")
 
     // Initialize ProcessingHelper
     this.processingHelper = new ProcessingHelper(this)
+    log.info("ProcessingHelper initialized")
 
     // Initialize ShortcutsHelper
     this.shortcutsHelper = new ShortcutsHelper(this)
+    log.info("ShortcutsHelper initialized")
   }
 
   public static getInstance(): AppState {
@@ -109,7 +123,7 @@ export class AppState {
   }
 
   public toggleMainWindow(): void {
-    console.log(
+    log.info(
       "Screenshots: ",
       this.screenshotHelper.getScreenshotQueue().length,
       "Extra screenshots: ",
@@ -177,18 +191,30 @@ export class AppState {
   }
 }
 
+process.on("uncaughtException", (error) => {
+  log.error(`Uncaught Exception: ${error.message}\n${error.stack}`)
+  app.quit()
+})
+
 // Application initialization
 async function initializeApp() {
+  log.info("initializeApp called")
+
   const appState = AppState.getInstance()
+  log.info("AppState instance created")
 
   // Initialize IPC handlers before window creation
   initializeIpcHandlers(appState)
+  log.info("IPC handlers initialized")
 
   app.whenReady().then(() => {
+    log.info("App is ready")
     console.log("App is ready")
     appState.createWindow()
+    log.info("Window creation called")
     // Register global shortcuts using ShortcutsHelper
     appState.shortcutsHelper.registerGlobalShortcuts()
+    log.info("Global shortcuts registered")
   })
 
   app.on("activate", () => {

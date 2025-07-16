@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Interview Coder</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .download-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .download-buttons a:hover {
+            background-color: #0056b3;
+        }
+        .download-buttons a.disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Download Interview Coder</h1>
+        <p>Get the latest version for your operating system.</p>
+        <div class="download-buttons">
+            <!-- 
+              TODO: Replace '#' with the actual download links.
+              The filenames will be in the 'release' directory after you run 'npm run app:build'.
+              Example filenames (version may vary):
+              - Windows: Interview Coder Setup 1.0.0.exe
+              - macOS: Interview Coder-1.0.0.dmg
+              - Linux: Interview Coder-1.0.0.AppImage
+            -->
+            <a href="https://github.com/Sahad-09/Fuck-Aptitude/releases/download/v1.0.0/Interview.Coder.Setup.1.0.0.exe" id="download-windows">Download for Windows (.exe)</a>
+            <a href="#" id="download-mac" class="disabled" aria-disabled="true">macOS (coming soon)</a>
+            <a href="#" id="download-linux" class="disabled" aria-disabled="true">Linux (coming soon)</a>
+        </div>
+    </div>
+</body>
+</html> 

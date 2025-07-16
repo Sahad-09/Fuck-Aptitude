@@ -2,12 +2,16 @@
 import { BrowserWindow, screen } from "electron"
 import { AppState } from "main"
 import path from "node:path"
+import log from "electron-log"
 
 const isDev = process.env.NODE_ENV === "development"
 
 const startUrl = isDev
   ? "http://localhost:5180"
   : `file://${path.join(__dirname, "../dist/index.html")}`
+
+log.info(`WindowHelper: isDev = ${isDev}`)
+log.info(`WindowHelper: startUrl = ${startUrl}`)
 
 export class WindowHelper {
   private mainWindow: BrowserWindow | null = null
@@ -67,6 +71,8 @@ export class WindowHelper {
   public createWindow(): void {
     if (this.mainWindow !== null) return
 
+    log.info("WindowHelper: Creating new window...")
+
     const primaryDisplay = screen.getPrimaryDisplay()
     const workArea = primaryDisplay.workAreaSize
     this.screenWidth = workArea.width
@@ -97,6 +103,8 @@ export class WindowHelper {
     }
 
     this.mainWindow = new BrowserWindow(windowSettings)
+    log.info("WindowHelper: BrowserWindow created")
+
     // this.mainWindow.webContents.openDevTools()
     this.mainWindow.setContentProtection(true)
 
@@ -116,8 +124,18 @@ export class WindowHelper {
     this.mainWindow.setSkipTaskbar(true)
     this.mainWindow.setAlwaysOnTop(true)
 
+    log.info(`WindowHelper: Loading URL: ${startUrl}`)
     this.mainWindow.loadURL(startUrl).catch((err) => {
+      log.error("WindowHelper: Failed to load URL:", err)
       console.error("Failed to load URL:", err)
+    })
+
+    this.mainWindow.webContents.on('did-finish-load', () => {
+      log.info("WindowHelper: Page finished loading successfully")
+    })
+
+    this.mainWindow.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
+      log.error(`WindowHelper: Page failed to load. Error code: ${errorCode}, Description: ${errorDescription}`)
     })
 
     const bounds = this.mainWindow.getBounds()

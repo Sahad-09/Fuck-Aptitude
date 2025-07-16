@@ -1,10 +1,19 @@
 // ProcessingHelper.ts
 
+import { app } from "electron"
+import path from "path"
 import dotenv from "dotenv"
+import log from "electron-log"
 import { LLMHelper } from "./LLMHelper"
 import { AppState } from "./main"
 
-dotenv.config()
+log.info("ProcessingHelper module loading...")
+
+const envPath = path.join(app.getPath("userData"), ".env")
+log.info(`Looking for .env file at: ${envPath}`)
+
+dotenv.config({ path: envPath })
+log.info("dotenv.config() completed")
 
 const isDev = process.env.NODE_ENV === "development"
 const isDevTest = process.env.IS_DEV_TEST === "true"
@@ -17,13 +26,16 @@ export class ProcessingHelper {
   private currentExtraProcessingAbortController: AbortController | null = null
 
   constructor(appState: AppState) {
+    log.info("ProcessingHelper constructor called")
     this.appState = appState
-    const apiKey = process.env.GEMINI_API_KEY
-    if (!apiKey) {
-      throw new Error("GEMINI_API_KEY not found in environment variables")
-    }
+    const apiKey = "AIzaSyDeuOFjOA5SmTIHNbCB2f6RAAr51Efv04o"
+
+    log.info("Using hardcoded API key - initializing LLMHelper")
     this.llmHelper = new LLMHelper(apiKey)
+    log.info("LLMHelper initialized successfully")
   }
+
+
 
   public async processScreenshots(): Promise<void> {
     if (this.currentProcessingAbortController || this.currentExtraProcessingAbortController) {
